@@ -99,19 +99,19 @@ h1 { margin: 0 0 8px; font-size: 1.6rem; }
 .store-badges {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 0; /* neutral gap; we'll overlap the second badge below */
   justify-content: center;
   align-items: center;
-  margin-top: 14px;
+  margin: 0;
 }
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   text-decoration: none;
   color: var(--text);
   border-radius: 6px;
-  padding: 4px 6px;
+  padding: 0; /* remove inner padding so image occupies more space */
   transition: transform 120ms ease;
   background: transparent; /* remove inner dark box */
   border: none;
@@ -125,7 +125,14 @@ h1 { margin: 0 0 8px; font-size: 1.6rem; }
 .badge .big { font-size: 1.05rem; font-weight: 700; }
 
 /* if badge contains an image */
-.badge img { height: 140px; width: auto; display: block; }
+.badge img { height: 220px; width: auto; display: block; object-fit: contain; }
+
+/* per-badge tuning to equalize perceived size */
+.badge.appstore img { height: 220px; }
+.badge.play img { height: 250px; }
+
+/* overlap the second badge upward to bring badges visually closer */
+.store-badges .badge + .badge { margin-top: -120px; }
 
 /* store-specific looks */
 .badge.appstore, .badge.play { background: transparent; border: none; }
@@ -133,14 +140,14 @@ h1 { margin: 0 0 8px; font-size: 1.6rem; }
 /* Download section two-column layout */
 .download-grid {
   display: flex;
-  gap: 32px;
+  gap: 22px; /* tighten space between text and badges */
   align-items: center;
   justify-content: space-between;
 }
-.download-text { flex: 1 1 50%; text-align: left; }
+.download-text { flex: 1 1 50%; text-align: left; display:flex; flex-direction:column; justify-content:center; }
 .download-text .lead { font-size: 1.05rem; }
 .download-text .muted { margin-top: 8px; }
-.download-badges { flex: 0 0 240px; display:flex; flex-direction:column; align-items:center; }
+.download-badges { flex: 0 0 320px; display:flex; flex-direction:column; align-items:center; justify-content: center; }
 
 /* remove card appearance for download-only card */
 .download-card { background: transparent; box-shadow: none; border: none; padding: 12px 4px; }
@@ -148,7 +155,10 @@ h1 { margin: 0 0 8px; font-size: 1.6rem; }
 @media (max-width: 720px) {
   .download-grid { flex-direction: column-reverse; align-items: center; }
   .download-badges { width: 100%; flex: none; }
-  .badge img { height: 110px; }
+  .badge img { height: 160px; }
+  .store-badges .badge + .badge { margin-top: -64px; }
+  .badge.appstore img { height: 160px; }
+  .badge.play img { height: 180px; }
   .download-text { text-align: center; }
 }
 
