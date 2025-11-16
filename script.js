@@ -11,4 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   console.log('Guardian App: DOM loaded');
+
+  // No page selector — navigation is handled with the top nav links.
+
+  // Highlight active nav link
+  var links = document.querySelectorAll('.nav-link');
+  if (links && links.length) {
+    var cur = location.pathname.split('/').pop() || 'index.html';
+    links.forEach(function (l) {
+      if (l.getAttribute('href') === cur) {
+        l.classList.add('active');
+      }
+    });
+  }
 });

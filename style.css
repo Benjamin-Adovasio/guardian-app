@@ -1,10 +1,13 @@
 :root {
-  --bg: #f6f7fb;
-  --card: #ffffff;
-  --muted: #6b7280;
-  --accent: #2563eb;
-  --radius: 8px;
-  --max-width: 680px;
+  --bg: #141414; /* user-requested exact background */
+  --bg-accent: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  --card: rgba(255,255,255,0.03);
+  --muted: #94a3b8;
+  --text: #e6eef8;
+  --accent: #06b6d4; /* cyan */
+  --accent-2: #3b82f6; /* blue */
+  --radius: 10px;
+  --max-width: 720px;
 }
 
 * { box-sizing: border-box; }
@@ -13,17 +16,47 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   background: var(--bg);
-  color: #111827;
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Header / Navigation */
+.site-header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+.site-header .container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.brand { font-weight: 700; color: var(--text); font-size: 1.05rem; }
+.nav { display: flex; gap: 12px; align-items: center; margin-left: 8px; }
+.nav-link {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.nav-link.active { color: var(--text); background: rgba(255,255,255,0.03); }
+.page-select { margin-left: auto; background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.04); padding: 8px 10px; border-radius: 8px; }
 
 .center {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  padding: 36px;
 }
 
 .card {
@@ -32,28 +65,90 @@ body {
   background: var(--card);
   border-radius: var(--radius);
   padding: 28px;
-  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+  box-shadow: 0 10px 30px rgba(3,7,18,0.6);
   text-align: center;
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
 }
 
 h1 { margin: 0 0 8px; font-size: 1.6rem; }
-.lead { margin: 0 0 12px; color: #374151; }
+.lead { margin: 0 0 12px; color: var(--text); opacity: 0.9; }
 .muted { margin: 12px 0; color: var(--muted); font-size: 0.9rem; }
 
-.actions { margin-top: 12px; }
+.actions { margin-top: 14px; }
 .btn {
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
   color: white;
   border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 8px 20px rgba(59,130,246,0.12);
+  transition: transform 120ms ease, box-shadow 120ms ease;
 }
-.btn:hover { filter: brightness(0.95); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(59,130,246,0.18); }
 
 .footer { margin-top: 18px; color: var(--muted); font-size: 0.85rem; }
 
 @media (max-width: 520px) {
   .card { padding: 20px; }
 }
+
+/* Store badges */
+.store-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text);
+  border-radius: 6px;
+  padding: 4px 6px;
+  transition: transform 120ms ease;
+  background: transparent; /* remove inner dark box */
+  border: none;
+  box-shadow: none;
+}
+.badge:focus,
+.badge:hover { transform: translateY(-4px); }
+.badge svg { height: auto; width: auto; display: block; }
+.badge .label { display: flex; flex-direction: column; line-height: 1; }
+.badge .small { font-size: 0.82rem; opacity: 0.95; }
+.badge .big { font-size: 1.05rem; font-weight: 700; }
+
+/* if badge contains an image */
+.badge img { height: 140px; width: auto; display: block; }
+
+/* store-specific looks */
+.badge.appstore, .badge.play { background: transparent; border: none; }
+
+/* Download section two-column layout */
+.download-grid {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: space-between;
+}
+.download-text { flex: 1 1 50%; text-align: left; }
+.download-text .lead { font-size: 1.05rem; }
+.download-text .muted { margin-top: 8px; }
+.download-badges { flex: 0 0 240px; display:flex; flex-direction:column; align-items:center; }
+
+/* remove card appearance for download-only card */
+.download-card { background: transparent; box-shadow: none; border: none; padding: 12px 4px; }
+
+@media (max-width: 720px) {
+  .download-grid { flex-direction: column-reverse; align-items: center; }
+  .download-badges { width: 100%; flex: none; }
+  .badge img { height: 110px; }
+  .download-text { text-align: center; }
+}
+
