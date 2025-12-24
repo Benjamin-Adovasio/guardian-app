@@ -1,0 +1,6 @@
+{
+	"appId": "com.dev.guardian",
+	"appName": "Guardian",
+	"webDir": "dist",
+	"packageClassList": []
+}
