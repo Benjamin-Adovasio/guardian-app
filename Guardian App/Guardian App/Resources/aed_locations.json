@@ -1,0 +1,4 @@
+[
+  { "id": "lib", "name": "Library", "location": "Front Desk" },
+  { "id": "gym", "name": "Gym", "location": "Main Entrance" }
+]
