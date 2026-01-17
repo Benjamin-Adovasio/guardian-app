@@ -1,27 +1,52 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection: AppSection = .home
+    @State private var selection: AppSection? = nil
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     var body: some View {
-        NavigationSplitView {
-            SidebarView(selection: $selection)
-        } detail: {
-            switch selection {
-            case .home:
-                HomeView()
-            case .aed:
-                AEDLocationsView()
-            case .firstAid:
-                FirstAidView()
-            case .contacts:
-                EmergencyContactsView()
-            case .card:
-                GuardianCardView()
-            case .settings:
-                SettingsView()
+        if sizeClass == .compact {
+            // iPhone
+            NavigationStack {
+                List(AppSection.allCases) { section in
+                    NavigationLink(value: section) {
+                        Label(section.rawValue, systemImage: section.icon)
+                    }
+                }
+                .navigationTitle("Guardian")
+                .navigationDestination(for: AppSection.self) { section in
+                    destinationView(for: section)
+                }
+            }
+        } else {
+            // iPad / macOS
+            NavigationSplitView {
+                SidebarView(selection: $selection)
+            } detail: {
+                if let selection {
+                    destinationView(for: selection)
+                } else {
+                    HomeView()
+                }
             }
         }
+    }
 
+    @ViewBuilder
+    private func destinationView(for section: AppSection) -> some View {
+        switch section {
+        case .home:
+            HomeView()
+        case .aed:
+            AEDLocationsView()
+        case .firstAid:
+            FirstAidView()
+        case .contacts:
+            EmergencyContactsView()
+        case .card:
+            GuardianCardView()
+        case .settings:
+            SettingsView()
+        }
     }
 }

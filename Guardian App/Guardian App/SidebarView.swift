@@ -1,15 +1,7 @@
-//
-//  SidebarView.swift
-//  Guardian App
-//
-//  Created by Benjamin on 1/17/26.
-//
-
-
 import SwiftUI
 
 struct SidebarView: View {
-    @Binding var selection: AppSection
+    @Binding var selection: AppSection?
 
     var body: some View {
         List(AppSection.allCases) { section in
@@ -24,3 +16,4 @@ struct SidebarView: View {
         .navigationTitle("Guardian")
     }
 }
+
