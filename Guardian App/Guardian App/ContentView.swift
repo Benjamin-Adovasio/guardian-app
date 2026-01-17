@@ -1,24 +1,27 @@
-//
-//  ContentView.swift
-//  Guardian App
-//
-//  Created by Benjamin on 1/17/26.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @State private var selection: AppSection = .home
 
-#Preview {
-    ContentView()
+    var body: some View {
+        NavigationSplitView {
+            SidebarView(selection: $selection)
+        } detail: {
+            switch selection {
+            case .home:
+                HomeView()
+            case .aed:
+                AEDLocationsView()
+            case .firstAid:
+                FirstAidView()
+            case .contacts:
+                EmergencyContactsView()
+            case .card:
+                GuardianCardView()
+            case .settings:
+                SettingsView()
+            }
+        }
+
+    }
 }
