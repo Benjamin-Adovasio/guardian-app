@@ -33,6 +33,7 @@
 				Services/LocationManager.swift,
 				SidebarView.swift,
 				Views/AEDLocationsView.swift,
+				Views/Components/FirstAidCard.swift,
 				Views/Components/PrimaryActionButton.swift,
 				Views/FirstAidView.swift,
 				Views/GuardianCardView.swift,
