@@ -14,7 +14,7 @@ struct AEDLocationsView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-
+            
             Map(
                 coordinateRegion: $region,
                 showsUserLocation: true,
@@ -48,6 +48,14 @@ struct AEDLocationsView: View {
                     span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
                 )
             }
+            VStack(alignment: .leading, spacing: 4) {
+                Divider()
+                Text("AED List")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.horizontal)
+            .padding(.top, 8)
 
             List(aeds) { aed in
                 VStack(alignment: .leading) {
@@ -76,4 +84,5 @@ struct AEDLocationsView: View {
         ])
     }
 }
+
 

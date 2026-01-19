@@ -61,5 +61,12 @@
     "location": "Front Desk",
     "latitude": 44.10575,
     "longitude": -70.19766
+  },
+  {
+    "id": "george",
+    "name": "George's Room",
+    "location": "Front Desk",
+    "latitude": 44.10789,
+    "longitude": -70.20405
   }
 ]

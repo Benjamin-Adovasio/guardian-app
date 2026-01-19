@@ -11,7 +11,8 @@ struct HomeView: View {
         ("Lewiston Police", "2077846421"),
         ("CMMC ER", "2077952200"),
         ("St. Mary's Hospital ER", "2077778120"),
-        ("Tri-County Mental Health Crisis Services", "2077834680")
+        ("Tri-County Mental Health Crisis Services", "2077834680"),
+        ("Geroge Udris", "4012419186")
     ]
 
     var body: some View {
