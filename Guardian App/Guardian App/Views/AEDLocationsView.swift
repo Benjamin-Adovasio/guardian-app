@@ -4,24 +4,36 @@ import MapKit
 struct AEDLocationsView: View {
     let aeds: [AEDLocation] = JSONLoader.load("aed_locations.json")
 
+    @StateObject private var locationManager = LocationManager()
+
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 41.3106, longitude: -72.9236),
-        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        center: CLLocationCoordinate2D(latitude: 44.105, longitude: -70.202),
+        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
 
     var body: some View {
         VStack(spacing: 0) {
 
-            // Interactive map
-            Map(coordinateRegion: $region, annotationItems: aeds) { aed in
+            Map(
+                coordinateRegion: $region,
+                showsUserLocation: true,
+                annotationItems: aeds
+            ) { aed in
                 MapMarker(
                     coordinate: aed.coordinate,
                     tint: .red
                 )
             }
-            .frame(height: 300)
+            .frame(height: 350)
+            .onChange(of: locationManager.userLocation) { location in
+                guard let location else { return }
 
-            // List below map
+                region = MKCoordinateRegion(
+                    center: location.coordinate,
+                    span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                )
+            }
+
             List(aeds) { aed in
                 VStack(alignment: .leading) {
                     Text(aed.name)
@@ -29,6 +41,9 @@ struct AEDLocationsView: View {
                     Text(aed.location)
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                }
+                .onTapGesture {
+                    region.center = aed.coordinate
                 }
             }
         }

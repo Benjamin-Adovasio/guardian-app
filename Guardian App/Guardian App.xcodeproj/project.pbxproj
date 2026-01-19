@@ -30,6 +30,7 @@
 				Models/AEDLocation.swift,
 				Resources/aed_locations.json,
 				Services/JSONLoader.swift,
+				Services/LocationManager.swift,
 				SidebarView.swift,
 				Views/AEDLocationsView.swift,
 				Views/EmergencyContactsView.swift,
@@ -40,20 +41,12 @@
 			);
 			target = 43F2818E2F1DE1E400DFBCAA /* Guardian */;
 		};
-		43F281C92F1EAAF600DFBCAA /* Exceptions for "Guardian App" folder in "Guardian App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Services/Untitled.swift,
-			);
-			target = 43F281292F1C2D3000DFBCAA /* Guardian App */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		43F2812C2F1C2D3000DFBCAA /* Guardian App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				43F281C92F1EAAF600DFBCAA /* Exceptions for "Guardian App" folder in "Guardian App" target */,
 				43F281C52F1DE48100DFBCAA /* Exceptions for "Guardian App" folder in "Guardian" target */,
 			);
 			path = "Guardian App";
