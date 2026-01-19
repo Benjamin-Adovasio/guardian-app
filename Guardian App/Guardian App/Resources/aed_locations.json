@@ -1,16 +1,65 @@
 [
   {
-    "id": "library",
-    "name": "Library",
+    "id": "alumni",
+    "name": "Alumni Gym",
     "location": "Front Desk",
-    "latitude": 41.3106,
-    "longitude": -72.9236
+    "latitude": 44.10479,
+    "longitude": -70.20167
   },
   {
-    "id": "gym",
-    "name": "Gym",
-    "location": "Main Entrance",
-    "latitude": 41.3112,
-    "longitude": -72.9244
+    "id": "bonney",
+    "name": "Bonney Scence Center",
+    "location": "Front Desk",
+    "latitude": 44.10407,
+    "longitude": -70.20470
+  }
+  {
+    "id": "cutten",
+    "name": "Cutten Maintenance Center",
+    "location": "Front Desk",
+    "latitude": 44.10426,
+    "longitude": -70.19780
+  }
+  {
+    "id": "dana",
+    "name": "Dana Chemistry Hall",
+    "location": "Front Desk",
+    "latitude": 44.10634,
+    "longitude": -70.20448
+  }
+  {
+    "id": "davis",
+    "name": "Davis Fitness Center",
+    "location": "Front Desk",
+    "latitude": 44.10575,
+    "longitude": -70.19766
+  }
+  {
+    "id": "health",
+    "name": "Bates Health Services",
+    "location": "Front Desk",
+    "latitude": 44.10452,
+    "longitude": -70.20545
+  }
+  {
+    "id": "merril",
+    "name": "Merrill Gym",
+    "location": "Front Desk",
+    "latitude": 44.10574,
+    "longitude": -70.19776
+  }
+  {
+    "id": "commons",
+    "name": "Commons",
+    "location": "Front Desk",
+    "latitude": 44.10541,
+    "longitude": -70.20166
+  }
+  {
+    "id": "underhill",
+    "name": "Underhill Ice Arena",
+    "location": "Front Desk",
+    "latitude": 44.10575,
+    "longitude": -70.19766
   }
 ]
