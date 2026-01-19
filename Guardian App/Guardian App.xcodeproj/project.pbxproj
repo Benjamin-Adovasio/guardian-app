@@ -8,18 +8,68 @@
 
 /* Begin PBXFileReference section */
 		43F2812A2F1C2D3000DFBCAA /* Guardian App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guardian App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43F2818F2F1DE1E400DFBCAA /* Guardian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guardian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		43F281AA2F1DE46D00DFBCAA /* Exceptions for "Guardian" folder in "Guardian" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ContentView.swift,
+				GuardianApp.swift,
+			);
+			target = 43F2818E2F1DE1E400DFBCAA /* Guardian */;
+		};
+		43F281C52F1DE48100DFBCAA /* Exceptions for "Guardian App" folder in "Guardian" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppSection.swift,
+				Assets.xcassets,
+				ContentView.swift,
+				GuardianApp.swift,
+				Models/AEDLocation.swift,
+				Resources/aed_locations.json,
+				Services/JSONLoader.swift,
+				SidebarView.swift,
+				Views/AEDLocationsView.swift,
+				Views/EmergencyContactsView.swift,
+				Views/FirstAidView.swift,
+				Views/GuardianCardView.swift,
+				Views/HomeView.swift,
+				Views/SettingsView.swift,
+			);
+			target = 43F2818E2F1DE1E400DFBCAA /* Guardian */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		43F2812C2F1C2D3000DFBCAA /* Guardian App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				43F281C52F1DE48100DFBCAA /* Exceptions for "Guardian App" folder in "Guardian" target */,
+			);
 			path = "Guardian App";
+			sourceTree = "<group>";
+		};
+		43F281902F1DE1E400DFBCAA /* Guardian */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				43F281AA2F1DE46D00DFBCAA /* Exceptions for "Guardian" folder in "Guardian" target */,
+			);
+			path = Guardian;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		43F281272F1C2D3000DFBCAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43F2818C2F1DE1E400DFBCAA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				43F2812C2F1C2D3000DFBCAA /* Guardian App */,
+				43F281902F1DE1E400DFBCAA /* Guardian */,
 				43F2812B2F1C2D3000DFBCAA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				43F2812A2F1C2D3000DFBCAA /* Guardian App.app */,
+				43F2818F2F1DE1E400DFBCAA /* Guardian.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +122,28 @@
 			productReference = 43F2812A2F1C2D3000DFBCAA /* Guardian App.app */;
 			productType = "com.apple.product-type.application";
 		};
+		43F2818E2F1DE1E400DFBCAA /* Guardian */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43F281972F1DE1E700DFBCAA /* Build configuration list for PBXNativeTarget "Guardian" */;
+			buildPhases = (
+				43F2818C2F1DE1E400DFBCAA /* Frameworks */,
+				43F2818D2F1DE1E400DFBCAA /* Resources */,
+				43F281A92F1DE46D00DFBCAA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				43F281902F1DE1E400DFBCAA /* Guardian */,
+			);
+			name = Guardian;
+			packageProductDependencies = (
+			);
+			productName = Guardian;
+			productReference = 43F2818F2F1DE1E400DFBCAA /* Guardian.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -81,6 +155,9 @@
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					43F281292F1C2D3000DFBCAA = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					43F2818E2F1DE1E400DFBCAA = {
 						CreatedOnToolsVersion = 26.2;
 					};
 				};
@@ -100,6 +177,7 @@
 			projectRoot = "";
 			targets = (
 				43F281292F1C2D3000DFBCAA /* Guardian App */,
+				43F2818E2F1DE1E400DFBCAA /* Guardian */,
 			);
 		};
 /* End PBXProject section */
@@ -112,10 +190,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		43F2818D2F1DE1E400DFBCAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		43F281262F1C2D3000DFBCAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43F281A92F1DE46D00DFBCAA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -327,6 +419,77 @@
 			};
 			name = Release;
 		};
+		43F281982F1DE1E700DFBCAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V4GT463ZPT;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Used to show nearby AED locations on the map.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adovasio.Guardian;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43F281992F1DE1E700DFBCAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V4GT463ZPT;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Used to show nearby AED locations on the map.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adovasio.Guardian;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -344,6 +507,15 @@
 			buildConfigurations = (
 				43F281362F1C2D3400DFBCAA /* Debug */,
 				43F281372F1C2D3400DFBCAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43F281972F1DE1E700DFBCAA /* Build configuration list for PBXNativeTarget "Guardian" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43F281982F1DE1E700DFBCAA /* Debug */,
+				43F281992F1DE1E700DFBCAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

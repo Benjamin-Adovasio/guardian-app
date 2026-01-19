@@ -1,4 +1,16 @@
 [
-  { "id": "lib", "name": "Library", "location": "Front Desk" },
-  { "id": "gym", "name": "Gym", "location": "Main Entrance" }
+  {
+    "id": "library",
+    "name": "Library",
+    "location": "Front Desk",
+    "latitude": 41.3106,
+    "longitude": -72.9236
+  },
+  {
+    "id": "gym",
+    "name": "Gym",
+    "location": "Main Entrance",
+    "latitude": 41.3112,
+    "longitude": -72.9244
+  }
 ]
