@@ -7,11 +7,6 @@ struct FirstAidView: View {
             VStack(alignment: .leading, spacing: 16) {
 
                 // Page title
-                Text("First Aid")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.horizontal)
-
                 Text("Basic emergency guidance. Always call 911 in a life-threatening situation.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
