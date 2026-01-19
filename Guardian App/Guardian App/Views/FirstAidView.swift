@@ -1,24 +1,19 @@
 import SwiftUI
 
 struct FirstAidView: View {
-    var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
+    let title: String
+        let content: String
 
-                GroupBox("CPR") {
-                    Text("Check responsiveness\nCall 911\nBegin compressions")
-                }
-
-                GroupBox("Bleeding") {
-                    Text("Apply firm pressure\nElevate if possible")
-                }
-
-                GroupBox("Choking") {
-                    Text("Encourage coughing\nPerform abdominal thrusts if needed")
-                }
+        var body: some View {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(title)
+                    .font(.headline)
+                Text(content)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
             }
             .padding()
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
         }
-        .navigationTitle("First Aid")
-    }
 }
