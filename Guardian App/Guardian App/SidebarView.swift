@@ -8,7 +8,7 @@ struct SidebarView: View {
             Button {
                 selection = section
             } label: {
-                Label(section.rawValue, systemImage: section.icon)
+                Label(section.title, systemImage: section.icon)
                     .fontWeight(selection == section ? .semibold : .regular)
                     .foregroundStyle(selection == section ? .red : .primary)
             }
@@ -16,4 +16,3 @@ struct SidebarView: View {
         .navigationTitle("Guardian")
     }
 }
-

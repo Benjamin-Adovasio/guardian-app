@@ -1,31 +1,42 @@
-//
-//  AppSection.swift
-//  Guardian App
-//
-//  Created by Benjamin on 1/17/26.
-//
-
-
 import SwiftUI
 
 enum AppSection: String, CaseIterable, Identifiable {
-    case home = "Emergency"
-    case aed = "AED Locations"
-    case firstAid = "First Aid"
-    case contacts = "Contacts"
-    case card = "Guardian Card"
-    case settings = "Settings"
+    case home
+    case aed
+    case firstAid
+    case card
+    case settings
 
     var id: String { rawValue }
 
+    /// Human-readable title shown in the UI
+    var title: String {
+        switch self {
+        case .home:
+            return "Emergency"
+        case .aed:
+            return "AED Locations"
+        case .firstAid:
+            return "First Aid"
+        case .card:
+            return "Guardian Card"
+        case .settings:
+            return "Settings"
+        }
+    }
+
     var icon: String {
         switch self {
-        case .home: return "house"
-        case .aed: return "mappin.and.ellipse"
-        case .firstAid: return "cross.case"
-        case .contacts: return "phone"
-        case .card: return "person.text.rectangle"
-        case .settings: return "gearshape"
+        case .home:
+            return "exclamationmark.triangle.fill"
+        case .aed:
+            return "bolt.heart.fill"
+        case .firstAid:
+            return "cross.case.fill"
+        case .card:
+            return "person.crop.rectangle"
+        case .settings:
+            return "gear"
         }
     }
 }

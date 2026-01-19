@@ -10,7 +10,7 @@ struct ContentView: View {
             NavigationStack {
                 List(AppSection.allCases) { section in
                     NavigationLink(value: section) {
-                        Label(section.rawValue, systemImage: section.icon)
+                        Label(section.title, systemImage: section.icon)
                     }
                 }
                 .navigationTitle("Guardian")
@@ -41,8 +41,6 @@ struct ContentView: View {
             AEDLocationsView()
         case .firstAid:
             FirstAidView()
-        case .contacts:
-            EmergencyContactsView()
         case .card:
             GuardianCardView()
         case .settings:

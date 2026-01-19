@@ -5,6 +5,7 @@ struct AEDLocationsView: View {
     let aeds: [AEDLocation] = JSONLoader.load("aed_locations.json")
 
     @StateObject private var locationManager = LocationManager()
+    @State private var selectedAED: AEDLocation?
 
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 44.105, longitude: -70.202),
@@ -19,10 +20,24 @@ struct AEDLocationsView: View {
                 showsUserLocation: true,
                 annotationItems: aeds
             ) { aed in
-                MapMarker(
-                    coordinate: aed.coordinate,
-                    tint: .red
-                )
+                MapAnnotation(coordinate: aed.coordinate) {
+                    Button {
+                        selectedAED = aed
+                        openMaps(for: aed)
+                    } label: {
+                        VStack(spacing: 4) {
+                            Image(systemName: "bolt.heart.fill")
+                                .font(.title2)
+                                .foregroundColor(
+                                    selectedAED?.id == aed.id ? .blue : .red
+                                )
+
+                            Text(aed.name)
+                                .font(.caption2)
+                                .fixedSize()
+                        }
+                    }
+                }
             }
             .frame(height: 350)
             .onChange(of: locationManager.userLocation) { location in
@@ -42,11 +57,23 @@ struct AEDLocationsView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
+                .contentShape(Rectangle())
                 .onTapGesture {
+                    selectedAED = aed
                     region.center = aed.coordinate
                 }
             }
         }
         .navigationTitle("AED Locations")
     }
+
+    private func openMaps(for aed: AEDLocation) {
+        let placemark = MKPlacemark(coordinate: aed.coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = aed.name
+        mapItem.openInMaps(launchOptions: [
+            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
+        ])
+    }
 }
+

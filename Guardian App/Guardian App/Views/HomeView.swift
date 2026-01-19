@@ -1,10 +1,24 @@
 import SwiftUI
 
 struct HomeView: View {
+
+    private let emergencyContacts = [
+        ("Campus Safety - Non Emergency", "2077866254"),
+        ("Health Services", "2077866199"),
+        ("CAPS", "2077866200"),
+        ("Student Affairs", "2077866219"),
+        ("SAPARS", "18775278644"),
+        ("Lewiston Police", "2077846421"),
+        ("CMMC ER", "2077952200"),
+        ("St. Mary's Hospital ER", "2077778120"),
+        ("Tri-County Mental Health Crisis Services", "2077834680")
+    ]
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
 
+                // Title
                 Text("Emergency")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -13,32 +27,38 @@ struct HomeView: View {
                 Text("If this is a life-threatening emergency, call 911 immediately.")
                     .foregroundStyle(.secondary)
 
-                Button {
+                // Call 911
+                PrimaryActionButton(
+                    title: "Call 911",
+                    systemImage: "phone.fill",
+                    color: .red
+                ) {
                     call("911")
-                } label: {
-                    Label("Call 911", systemImage: "phone.fill")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.red.opacity(0.15))
-                        .clipShape(RoundedRectangle(cornerRadius: 14))
                 }
 
-                Button {
-                    call("0000000000") // campus safety
-                } label: {
-                    Label("Campus Safety", systemImage: "shield.fill")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue.opacity(0.15))
-                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                PrimaryActionButton(
+                    title: "Campus Safety Emergency/Bates EMS",
+                    systemImage: "shield.fill",
+                    color: .blue
+                ) {
+                    call("2077866111")
                 }
-
-                GroupBox("What to do now") {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("• Ensure scene safety")
-                        Text("• Call for help")
-                        Text("• Start CPR if needed")
-                        Text("• Send someone to get an AED")
+                
+                // Emergency Contacts Section
+                GroupBox("Emergency Contacts") {
+                    VStack(spacing: 12) {
+                        ForEach(emergencyContacts, id: \.0) { contact in
+                            Button {
+                                call(contact.1)
+                            } label: {
+                                HStack {
+                                    Text(contact.0)
+                                    Spacer()
+                                    Image(systemName: "phone")
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                        }
                     }
                 }
             }
