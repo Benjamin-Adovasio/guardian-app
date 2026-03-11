@@ -12,6 +12,9 @@ struct PrimaryActionButton: View {
     let title: String
     let systemImage: String
     let color: Color
+    var fillColor: Color? = nil
+    var textColor: Color? = nil
+    var showsChevron = true
     let action: () -> Void
 
     var body: some View {
@@ -19,14 +22,23 @@ struct PrimaryActionButton: View {
             HStack(spacing: 12) {
                 Image(systemName: systemImage)
                     .font(.title2)
+
                 Text(title)
                     .font(.headline)
+
                 Spacer()
+
+                if showsChevron {
+                    Image(systemName: "arrow.right")
+                        .font(.subheadline.weight(.bold))
+                }
             }
-            .padding()
-            .background(color.opacity(0.15))
-            .foregroundColor(color)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .padding(.horizontal, 18)
+            .padding(.vertical, 16)
+            .background((fillColor ?? color.opacity(0.15)))
+            .foregroundStyle(textColor ?? color)
+            .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         }
+        .buttonStyle(.plain)
     }
 }

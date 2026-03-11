@@ -1,9 +1,6 @@
 import SwiftUI
 
 struct GuardianCardView: View {
-
-    // MARK: - Sample Data (replace later with stored user data)
-
     private let name = "John Doe"
     private let bloodType = "O+"
     private let allergies = "None"
@@ -16,110 +13,169 @@ struct GuardianCardView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(alignment: .leading, spacing: 20) {
+                GuardianHeaderBadge(title: "Medical ID Access")
 
-                // Identity Card
-                card {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Label(name, systemImage: "person.fill")
-                            .font(.title2)
-                            .fontWeight(.semibold)
+                Text("Guardian Card")
+                    .font(.system(size: 38, weight: .black, design: .rounded))
+                    .foregroundStyle(GuardianTheme.textPrimary)
 
-                        Divider()
+                Text("Keep essential medical details and emergency contacts ready for responders.")
+                    .font(.title3)
+                    .foregroundStyle(GuardianTheme.textSecondary)
 
-                        infoRow(label: "Blood Type", value: bloodType)
-                        infoRow(label: "Allergies", value: allergies)
-                        infoRow(label: "Medical Notes", value: medicalNotes)
-                    }
+                identityCard
+                contactsCard
+                actionsCard
+            }
+            .padding(24)
+            .frame(maxWidth: 980, alignment: .leading)
+            .frame(maxWidth: .infinity)
+        }
+        .background(GuardianTheme.background)
+        .navigationTitle("Guardian Card")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var identityCard: some View {
+        VStack(alignment: .leading, spacing: 18) {
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(name)
+                        .font(.system(size: 30, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+
+                    Text("Emergency Medical Profile")
+                        .font(.subheadline.weight(.medium))
+                        .foregroundStyle(.white.opacity(0.8))
                 }
 
-                // Emergency Contacts
-                card {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Label("Emergency Contacts", systemImage: "phone.fill")
-                            .font(.headline)
+                Spacer()
 
-                        ForEach(emergencyContacts, id: \.0) { contact in
-                            Button {
-                                call(contact.2)
-                            } label: {
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        Text(contact.1)
-                                            .fontWeight(.semibold)
-                                        Text(contact.0)
-                                            .font(.caption)
-                                            .foregroundStyle(.secondary)
-                                    }
-                                    Spacer()
-                                    Image(systemName: "phone")
-                                }
+                Image(systemName: "person.text.rectangle.fill")
+                    .font(.system(size: 28))
+                    .foregroundStyle(.white.opacity(0.9))
+            }
+
+            Divider()
+                .overlay(.white.opacity(0.25))
+
+            VStack(spacing: 14) {
+                cardDetailRow(label: "Blood Type", value: bloodType)
+                cardDetailRow(label: "Allergies", value: allergies)
+                cardDetailRow(label: "Medical Notes", value: medicalNotes)
+            }
+        }
+        .padding(24)
+        .background(
+            LinearGradient(
+                colors: [GuardianTheme.textPrimary, Color(red: 0.15, green: 0.19, blue: 0.29)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
+        .shadow(color: Color.black.opacity(0.16), radius: 28, y: 18)
+    }
+
+    private var contactsCard: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Emergency Contacts")
+                .font(.title3.weight(.bold))
+                .foregroundStyle(GuardianTheme.textPrimary)
+
+            VStack(spacing: 12) {
+                ForEach(emergencyContacts, id: \.0) { contact in
+                    Button {
+                        call(contact.2)
+                    } label: {
+                        HStack(spacing: 14) {
+                            ZStack {
+                                Circle()
+                                    .fill(GuardianTheme.brandRed.opacity(0.10))
+
+                                Image(systemName: "phone.fill")
+                                    .foregroundStyle(GuardianTheme.brandRed)
                             }
-                            Divider()
-                        }
-                    }
-                }
+                            .frame(width: 42, height: 42)
 
-                // Primary Actions
-                card {
-                    VStack(spacing: 12) {
-                        Button {
-                            call("911")
-                        } label: {
-                            actionRow(
-                                title: "Call 911",
-                                systemImage: "phone.fill",
-                                color: .red
-                            )
-                        }
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(contact.1)
+                                    .font(.headline)
+                                    .foregroundStyle(GuardianTheme.textPrimary)
 
-                        Button {
-                            // Placeholder for Wallet / Share later
-                        } label: {
-                            actionRow(
-                                title: "Add to Apple Wallet",
-                                systemImage: "wallet.pass.fill",
-                                color: .blue
-                            )
+                                Text(contact.0)
+                                    .font(.subheadline)
+                                    .foregroundStyle(GuardianTheme.textSecondary)
+                            }
+
+                            Spacer()
+
+                            Text(formattedPhone(contact.2))
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(GuardianTheme.textPrimary)
                         }
+                        .padding(16)
+                        .background(Color.black.opacity(0.02))
+                        .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
                     }
+                    .buttonStyle(.plain)
                 }
             }
-            .padding()
         }
-        .navigationTitle("Guardian Card")
+        .padding(24)
+        .guardianCardStyle()
     }
 
-    // MARK: - Reusable Components
+    private var actionsCard: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Quick Actions")
+                .font(.title3.weight(.bold))
+                .foregroundStyle(GuardianTheme.textPrimary)
 
-    private func card<Content: View>(@ViewBuilder content: () -> Content) -> some View {
-        content()
-            .padding()
-            .background(.thinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 20))
+            VStack(spacing: 12) {
+                PrimaryActionButton(
+                    title: "Call 911",
+                    systemImage: "phone.fill",
+                    color: GuardianTheme.brandRed
+                ) {
+                    call("911")
+                }
+
+                PrimaryActionButton(
+                    title: "Add to Apple Wallet",
+                    systemImage: "wallet.pass.fill",
+                    color: GuardianTheme.textPrimary,
+                    fillColor: GuardianTheme.textPrimary.opacity(0.08),
+                    textColor: GuardianTheme.textPrimary
+                ) {
+                }
+            }
+        }
+        .padding(24)
+        .guardianCardStyle()
     }
 
-    private func infoRow(label: String, value: String) -> some View {
+    private func cardDetailRow(label: String, value: String) -> some View {
         HStack {
             Text(label)
-                .foregroundStyle(.secondary)
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(.white.opacity(0.72))
+
             Spacer()
+
             Text(value)
-                .fontWeight(.medium)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(.white)
         }
     }
 
-    private func actionRow(title: String, systemImage: String, color: Color) -> some View {
-        HStack {
-            Image(systemName: systemImage)
-            Text(title)
-                .fontWeight(.semibold)
-            Spacer()
-        }
-        .padding()
-        .background(color.opacity(0.15))
-        .foregroundColor(color)
-        .clipShape(RoundedRectangle(cornerRadius: 14))
+    private func formattedPhone(_ number: String) -> String {
+        guard number.count == 10 else { return number }
+        let areaCode = number.prefix(3)
+        let prefix = number.dropFirst(3).prefix(3)
+        let line = number.suffix(4)
+        return "(\(areaCode)) \(prefix)-\(line)"
     }
 
     private func call(_ number: String) {

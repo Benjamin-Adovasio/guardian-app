@@ -15,33 +15,50 @@ struct FirstAidCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-
-            // Header
             HStack(spacing: 12) {
-                Image(systemName: icon)
-                    .font(.title2)
-                    .foregroundColor(.red)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 14, style: .continuous)
+                        .fill(GuardianTheme.brandRed.opacity(0.10))
 
-                Text(title)
-                    .font(.headline)
+                    Image(systemName: icon)
+                        .font(.title3.weight(.bold))
+                        .foregroundStyle(GuardianTheme.brandRed)
+                }
+                .frame(width: 48, height: 48)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .font(.headline)
+                        .foregroundStyle(GuardianTheme.textPrimary)
+
+                    Text("Immediate response steps")
+                        .font(.subheadline)
+                        .foregroundStyle(GuardianTheme.textSecondary)
+                }
 
                 Spacer()
             }
 
-            // Steps
             ForEach(steps.indices, id: \.self) { index in
-                HStack(alignment: .top, spacing: 8) {
-                    Text("\(index + 1).")
-                        .fontWeight(.semibold)
+                HStack(alignment: .top, spacing: 12) {
+                    Text("\(index + 1)")
+                        .font(.subheadline.weight(.bold))
+                        .foregroundStyle(GuardianTheme.brandRed)
+                        .frame(width: 28, height: 28)
+                        .background(GuardianTheme.brandRed.opacity(0.08))
+                        .clipShape(Circle())
 
                     Text(steps[index])
-                        .foregroundStyle(.secondary)
+                        .font(.subheadline)
+                        .foregroundStyle(GuardianTheme.textSecondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                .padding(14)
+                .background(Color.black.opacity(0.02))
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             }
         }
-        .padding()
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 20))
-        .padding(.horizontal)
+        .padding(22)
+        .guardianCardStyle()
     }
 }
